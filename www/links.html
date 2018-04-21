@@ -51,9 +51,9 @@
 
     <div ng-app="myApp" ng-controller="GameLinks">
   <div class="container">
-    
+    <h5 class="text-center alert alert-success">In App Games</h5>
+    <br>
     <div class="row">
-
   <div class="column" ng-repeat="x in details">
        <button type="button" ng-click="clink(x.Code)" >
         <img src="img/{{x.Img}}" width="100%">
@@ -61,8 +61,18 @@
       </button>
 
   </div>
+</div>
+<br>
+ <h5 class="text-center alert alert-success">Browser Based Games</h5>
+ <br>
+<div class="row">
+  <div class="column" ng-repeat="x in details2">
+       <button type="button" ng-click="clink(x.Code)" >
+        <img src="img/{{x.Img}}" width="100%">
+      {{x.Name}}
+      </button>
 
-
+  </div>
 </div>
 
 
@@ -73,13 +83,18 @@
         var app = angular.module('myApp', []);
         app.controller('GameLinks', function($scope, $http) {
        
-            var q = "select * from tblList";
+            var q = "select * from tblList where linktype = 'iframe'";
             $http.get(localStorage.getItem("serverpath")+"data.php?Code=execute&q="+q)
             .then(function (response) {
                 $scope.details = response.data.result; 
                     
                 });
-
+        var q2 = "select * from tblList where linktype = 'script'";
+            $http.get(localStorage.getItem("serverpath")+"data.php?Code=execute&q="+q2)
+            .then(function (response) {
+                $scope.details2 = response.data.result; 
+                    
+                });
              $scope.clink = function (Code) {
 
                  localStorage.setItem("Code",Code);
