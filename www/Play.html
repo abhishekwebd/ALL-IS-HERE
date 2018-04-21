@@ -13,17 +13,7 @@
  
     <script type="text/javascript" src="js/keen.js"></script>
     <style type="text/css">
-        .column {
-    float: left;
-    width: 33.33%;
-}
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 .loader {
   position: fixed;
   left: 0px;
@@ -58,7 +48,7 @@
             var q = "select Link from tblList where Code = "+localStorage.getItem("Code");
             $http.get(localStorage.getItem("serverpath")+"data.php?Code=execute&q="+q)
             .then(function (response) {
-              document.write("<br><b>Rotate Your Screen in Landscape Mode for better view !</b>");
+              document.write("Rotate Your Screen in Landscape Mode for better view !");
                 document.write(response.data.result[0].Link); 
                     
                 });
