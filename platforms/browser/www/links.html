@@ -83,13 +83,13 @@
         var app = angular.module('myApp', []);
         app.controller('GameLinks', function($scope, $http) {
        
-            var q = "select * from tblList where linktype = 'iframe'";
+            var q = "select * from tblList where linktype = 'iframe' and Active =1";
             $http.get(localStorage.getItem("serverpath")+"data.php?Code=execute&q="+q)
             .then(function (response) {
                 $scope.details = response.data.result; 
                     
                 });
-        var q2 = "select * from tblList where linktype = 'script'";
+        var q2 = "select * from tblList where linktype = 'script' and Active =1";
             $http.get(localStorage.getItem("serverpath")+"data.php?Code=execute&q="+q2)
             .then(function (response) {
                 $scope.details2 = response.data.result; 
